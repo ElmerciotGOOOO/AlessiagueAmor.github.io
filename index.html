@@ -8,30 +8,30 @@
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
-<body class="bg-black text-white flex flex-col items-center justify-center min-h-screen relative">
+<body class="bg-black text-white min-h-screen relative overflow-hidden flex flex-col items-center justify-center">
 
-  <!-- Audio oculto, autoplay con muted -->
+  <!-- Audio oculto (cargado desde carpeta local) -->
   <audio id="backgroundAudio" autoplay muted loop>
     <source src="./audio/MiCanto.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio HTML5
   </audio>
 
-  <!-- Botón para iniciar música -->
-  <button id="playMusicBtn" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded mb-6 shadow-lg">
+  <!-- Elementos decorativos al fondo -->
+  <div class="efecto-bloom absolute inset-0 z-0"></div>
+  <div class="terminal absolute inset-0 z-0" id="terminal"></div>
+  <div class="love-container absolute inset-0 z-0" id="loveContainer"></div>
+
+  <!-- Botón de música (encima de todo, interactivo) -->
+  <button id="playMusicBtn" class="z-10 relative bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded shadow-lg mb-6">
     ▶ Reproducir Música
   </button>
 
-  <!-- Contenido visual -->
-  <div class="efecto-bloom"></div>
-  <div class="terminal" id="terminal"></div>
-  <div class="love-container" id="loveContainer"></div>
-
-  <!-- Mensaje central -->
-  <div class="centro text-3xl font-bold text-pink-400 text-center">
+  <!-- Texto central de amor -->
+  <div class="z-10 relative text-3xl font-bold text-pink-400 text-center px-4">
     TE QUIERO <span class="text-red-500">❤</span> ALESSIAUGUE☀
   </div>
 
-  <!-- JS para manejar el audio -->
+  <!-- Script para reproducir el audio al hacer clic -->
   <script>
     const audio = document.getElementById('backgroundAudio');
     const playBtn = document.getElementById('playMusicBtn');
