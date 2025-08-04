@@ -1,26 +1,56 @@
-<!-- html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BCode</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./css/styles.css" />
-    
 </head>
 
-<body class="bg-black">
-    <audio id="backgroundAudio" autoplay loop>
-        <source src="./audio/MiCanto.mp3" type="audio/mpeg">
+<body class="bg-black text-white flex flex-col items-center justify-center min-h-screen relative">
+
+    <!-- Audio oculto -->
+    <audio id="backgroundAudio" autoplay muted loop>
+        <source src="./audio/MiCanto.mp3" type="audio/mpeg" />
         Tu navegador no soporta audio HTML5
     </audio>
 
+    <!-- Botón para iniciar la música -->
+    <button id="playMusicBtn" class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded mb-6 shadow-lg">
+        ▶ Reproducir Música
+    </button>
+
+    <!-- Efecto bloom, terminal, loveContainer (puedes añadir estilos) -->
     <div class="efecto-bloom"></div>
     <div class="terminal" id="terminal"></div>
     <div class="love-container" id="loveContainer"></div>
 
-       <div class="centro">TE QUIERO <span>❤</span> ALESSIAUGUE☀</div> 
+    <!-- Mensaje central -->
+    <div class="centro text-3xl font-bold text-pink-400 text-center">
+        TE QUIERO <span class="text-red-500">❤</span> ALESSIAUGUE☀
+    </div>
+
+    <!-- Script de reproducción -->
+    <script>
+        const audio = document.getElementById('backgroundAudio');
+        const playBtn = document.getElementById('playMusicBtn');
+
+        playBtn.addEventListener('click', () => {
+            audio.muted = false;
+            audio.play()
+                .then(() => {
+                    playBtn.disabled = true;
+                    playBtn.textContent = '🎶 Reproduciendo...';
+                    playBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                })
+                .catch(error => {
+                    console.error("Error al reproducir el audio:", error);
+                });
+        });
+    </script>
+
+    <!-- Tu script personalizado -->
+    <script src="./js/script.js"></script>
 </body>
-<script src="./js/script.js"></script>
 </html>
