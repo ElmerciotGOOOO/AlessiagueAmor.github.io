@@ -8,38 +8,41 @@
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
-<body class="bg-black text-white min-h-screen relative overflow-hidden flex flex-col items-center justify-center">
+<body class="bg-black text-white min-h-screen overflow-hidden relative flex items-center justify-center">
 
-  <!-- Audio autoplay silenciado (para evitar bloqueos) -->
+  <!-- Audio silenciado para autoplay -->
   <audio id="backgroundAudio" autoplay muted loop>
     <source src="./audio/MiCanto.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio HTML5
   </audio>
 
-  <!-- Fondo decorativo -->
-  <div class="efecto-bloom absolute inset-0 z-0"></div>
-  <div class="terminal absolute inset-0 z-0" id="terminal"></div>
-  <div class="love-container absolute inset-0 z-0" id="loveContainer"></div>
+  <!-- Fondo decorativo: asegurado con z-0 -->
+  <div class="efecto-bloom absolute inset-0 z-0 pointer-events-none"></div>
+  <div class="terminal absolute inset-0 z-0 pointer-events-none" id="terminal"></div>
+  <div class="love-container absolute inset-0 z-0 pointer-events-none" id="loveContainer"></div>
 
-  <!-- Texto de amor -->
-  <div class="z-10 relative text-3xl font-bold text-pink-400 text-center px-4">
-    TE QUIERO <span class="text-red-500">❤</span> ALESSIAUGUE☀
+  <!-- Contenido visible centrado -->
+  <div class="z-10 relative text-center px-4">
+    <h1 class="text-4xl font-bold text-pink-400 mb-4">
+      TE QUIERO <span class="text-red-500">❤</span> ALESSIAUGUE☀
+    </h1>
+    <p class="text-sm text-gray-300">Haz clic en cualquier parte para escuchar la música 🎶</p>
   </div>
 
-  <!-- Script para simular autoplay al primer clic -->
+  <!-- JS para quitar mute al hacer clic -->
   <script>
     const audio = document.getElementById('backgroundAudio');
 
-    const iniciarMusica = () => {
+    function iniciarMusica() {
       audio.muted = false;
-      audio.play().catch(err => console.log("Autoplay bloqueado:", err));
+      audio.play().catch((e) => console.warn("Error al iniciar música:", e));
       document.removeEventListener('click', iniciarMusica);
-    };
+    }
 
     document.addEventListener('click', iniciarMusica);
   </script>
 
-  <!-- Script extra personalizado -->
+  <!-- Tu script personalizado (si aplica) -->
   <script src="./js/script.js"></script>
 </body>
 </html>
